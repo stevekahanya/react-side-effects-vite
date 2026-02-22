@@ -1,31 +1,63 @@
-# React Side Effects Lab
+🚀 Lab: React Side Effects (Joke Generator)
+📌 Overview
+This lab focuses on mastering the useEffect hook to manage side effects—specifically fetching data from an external API. You will build a "Programming Joke Generator" that interacts with the JokeAPI.
 
-## Overview
-This lab demonstrates how to handle **side effects** in React using the `useEffect` hook. The app fetches and displays a random **programming joke** when the page loads and allows users to fetch a new joke with a button click.
+🛠 Setup Instructions
+Install Dependencies:
 
-## Setup
+Bash
+npm install
+Start Development Server:
 
-Run `npm install` to install dependencies.
+Bash
+npm run dev
+The app will be available at http://localhost:5173.
 
-Then, run `npm run dev` to start up the React app at `http://localhost:5173`.
+Run Tests:
 
-In another tab, run `npm run test` to run the test suite.
+Bash
+npm run test
+Use this to verify your implementation against the lab requirements.
 
-Before you start building out the application, examine the current code and component hierarchy. This will tell you how components can pass data to each other as well as where that information should be stored.
+🎯 Deliverables
+1. Initial Data Fetch
+Action: When the application first mounts, trigger a GET request.
 
-## Deliverables
+Endpoint: https://v2.jokeapi.dev/joke/Programming?type=single
 
-- **When our application loads**, make a `GET` request to `https://v2.jokeapi.dev/joke/Programming?type=single` to fetch a joke. Given your component tree, think about which component should be responsible for managing the joke data. Once the data is fetched, store it in state and render the joke on the page.
+Goal: Display a programming joke immediately upon page load.
 
-- **When the `New Joke` button is clicked**, make another `GET` request to `https://v2.jokeapi.dev/joke/Programming?type=single` to fetch a new joke. Update the state accordingly so that the new joke replaces the old one in the UI.
+2. Manual Refresh
+Action: Implement an event handler for the "New Joke" button.
 
-- **While waiting for the fetch request to resolve**, display a loading message to inform the user that a joke is being fetched.
+Goal: Fetch a fresh joke from the API and update the state, replacing the previous joke.
 
-- **If the API request fails**, handle the error gracefully by displaying a message instead of breaking the UI.
+3. Loading States
+Action: Use a boolean state (e.g., isLoading) to track the fetch status.
 
-## Best Practices
+Goal: Display a Loading... message while the asynchronous request is pending to improve UX.
 
-- Use the `useEffect` hook to make API calls at the appropriate lifecycle phase.
-- Manage component state using the `useState` hook.
-- Keep components modular and reusable.
-- Remove unnecessary console logs and commented-out code before submission.
+4. Error Handling
+Action: Use try...catch or .catch() blocks.
+
+Goal: Gracefully display an error message in the UI if the API is unreachable or returns an error.
+
+💡 Best Practices Applied
+useState: Used for managing the joke string, isLoading boolean, and error messages.
+
+useEffect: Utilized with an empty dependency array [] to ensure the initial fetch only runs once on mount.
+
+Component Architecture: * App: Manages state and logic (The "Container").
+
+JokeDisplay: Renders the text (The "Presenter").
+
+FetchButton: Handles the user interaction.
+
+🧪 Testing Checklist
+[ ] Does a joke appear within 2 seconds of page load?
+
+[ ] Does clicking "Get a New Joke" change the text?
+
+[ ] Does the "Loading..." text appear momentarily during the fetch?
+
+[ ] Are there any console errors or memory leaks?
