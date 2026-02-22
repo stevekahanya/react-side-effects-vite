@@ -1,8 +1,7 @@
-// Step 1: Accept props
 const JokeDisplay = ({ joke, loading }) => {
   return (
     <div className="joke-container">
-      {/* Step 2 & 3: Conditional Rendering */}
+      {/* Requirement: Only one p tag for the joke or loading message */}
       {loading ? (
         <p>Loading...</p>
       ) : (

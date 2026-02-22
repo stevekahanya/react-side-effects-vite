@@ -1,10 +1,13 @@
-// Step 1: Accept `fetchJoke` as a prop
-
-const FetchButton = ({ fetchJoke }) => {
+const FetchButton = ({ fetchJoke, loading }) => {
   return (
-    // Step 2: Add an onClick event that calls `fetchJoke`
-    <button className="fetch-button">Get a New Joke</button>
-  )
-}
+    <button 
+      className="fetch-button" 
+      onClick={fetchJoke}
+      disabled={loading} // Prevent multiple clicks during a fetch
+    >
+      {loading ? "Fetching..." : "Get a New Joke"}
+    </button>
+  );
+};
 
-export default FetchButton
+export default FetchButton;

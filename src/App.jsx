@@ -3,38 +3,46 @@ import JokeDisplay from './components/JokeDisplay';
 import FetchButton from './components/FetchButton';
 
 function App() {
-  // Step 1: Create state variables
   const [joke, setJoke] = useState('');
   const [loading, setLoading] = useState(false);
+  const [error, setError] = useState(null);
 
-  // Step 3: Define the fetch function
-  const fetchJoke = () => {
+  const API_URL = "https://v2.jokeapi.dev/joke/Programming?type=single";
+
+  // The fetching logic
+  const fetchJoke = async () => {
     setLoading(true);
-    fetch("https://v2.jokeapi.dev/joke/Programming?type=single")
-      .then((res) => res.json())
-      .then((data) => {
-        setJoke(data.joke);
-        setLoading(false);
-      })
-      .catch((err) => {
-        console.error(err);
-        setJoke("Oops! Failed to fetch a joke.");
-        setLoading(false);
-      });
+    setError(null); // Reset error state before a new attempt
+    try {
+      const response = await fetch(API_URL);
+      if (!response.ok) throw new Error("Network response was not ok");
+      
+      const data = await response.json();
+      setJoke(data.joke);
+    } catch (err) {
+      setError("Failed to fetch a joke. Please try again!");
+    } finally {
+      setLoading(false);
+    }
   };
 
-  // Step 2: Use useEffect to fetch on mount
+  // Trigger fetch on initial mount
   useEffect(() => {
     fetchJoke();
-  }, []); // Run once on mount
+  }, []); // Empty dependency array ensures this runs only once
 
   return (
     <div className="app">
       <h1>Programming Jokes</h1>
-      {/* Step 4: Pass joke and loading as props */}
-      <JokeDisplay joke={joke} loading={loading} />
-      {/* Step 5: Pass fetchJoke function as a prop */}
-      <FetchButton fetchJoke={fetchJoke} />
+      
+      {/* Display Error if it exists, otherwise show the JokeDisplay */}
+      {error ? (
+        <p style={{ color: 'red' }}>{error}</p>
+      ) : (
+        <JokeDisplay joke={joke} loading={loading} />
+      )}
+
+      <FetchButton fetchJoke={fetchJoke} loading={loading} />
     </div>
   );
 }
