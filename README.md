@@ -1,8 +1,8 @@
-🚀 Lab: React Side Effects (Joke Generator)
-📌 Overview
+ Lab: React Side Effects (Joke Generator)
+ Overview
 This lab focuses on mastering the useEffect hook to manage side effects—specifically fetching data from an external API. You will build a "Programming Joke Generator" that interacts with the JokeAPI.
 
-🛠 Setup Instructions
+Setup Instructions
 Install Dependencies:
 
 Bash
@@ -19,7 +19,7 @@ Bash
 npm run test
 Use this to verify your implementation against the lab requirements.
 
-🎯 Deliverables
+Deliverables
 1. Initial Data Fetch
 Action: When the application first mounts, trigger a GET request.
 
@@ -42,7 +42,7 @@ Action: Use try...catch or .catch() blocks.
 
 Goal: Gracefully display an error message in the UI if the API is unreachable or returns an error.
 
-💡 Best Practices Applied
+Best Practices Applied
 useState: Used for managing the joke string, isLoading boolean, and error messages.
 
 useEffect: Utilized with an empty dependency array [] to ensure the initial fetch only runs once on mount.
@@ -53,7 +53,7 @@ JokeDisplay: Renders the text (The "Presenter").
 
 FetchButton: Handles the user interaction.
 
-🧪 Testing Checklist
+Testing Checklist
 [ ] Does a joke appear within 2 seconds of page load?
 
 [ ] Does clicking "Get a New Joke" change the text?
